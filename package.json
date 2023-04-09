@@ -1,0 +1,26 @@
+{
+  "name": "list-browser-ts",
+  "private": true,
+  "version": "0.14.3",
+  "scripts": {
+    "prebuild": "rimraf build",
+    "build": "npm run prebuild && npm run build:tsc && npm run build:copy-files",
+    "build:tsc": "tsc",
+    "build:copy-files": "node ./scripts/copy-files.mjs",
+    "publish": "npm run build && cd build && npm publish",
+    "prettier": "prettier --write ."
+  },
+  "devDependencies": {
+    "@types/react": "^16.14.35",
+    "@types/react-dom": "^16.9.18",
+    "fs-extra": "^10.0.0",
+    "lint-staged": "^12.2.2",
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.9.3"
+  },
+  "peerDependencies": {
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0"
+  }
+}
