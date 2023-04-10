@@ -67,6 +67,11 @@ async function run() {
   try {
     await createPackageFile();
     await createModulePackages({ from: srcPath, to: buildPath });
+    // copy css
+    fse.copy(`${srcPath}/style.css`, `${buildPath}/style.css`, err => {
+      if (err) throw err;
+      console.log('CSS file was copied to destination');
+    });
   } catch (err) {
     console.error(err);
     process.exit(1);
