@@ -1,7 +1,7 @@
 {
   "name": "developer-box-react",
   "private": true,
-  "version": "0.3.0",
+  "version": "0.4.0",
   "scripts": {
     "prebuild": "rimraf build",
     "build": "npm run prebuild && npm run build:tsc && npm run build:copy-files",
