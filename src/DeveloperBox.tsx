@@ -4,10 +4,11 @@ import { AppRoute } from './types';
 
 type DeveloperBoxProps = {
   appCode: string;
-  routes: AppRoute[];
+  appRoutes: AppRoute[];
+  devToolsUrl: string;
 };
 
-function DeveloperBox({ appCode, routes }: DeveloperBoxProps) {
+function DeveloperBox({ appCode, appRoutes, devToolsUrl }: DeveloperBoxProps) {
   const [show, setShow] = useState(false);
 
   return (
@@ -17,7 +18,9 @@ function DeveloperBox({ appCode, routes }: DeveloperBoxProps) {
           <i className="plus"></i>
         </button>
       )}
-      {show && <Window appCode={appCode} routes={routes} onClose={() => setShow(false)} />}
+      {show && (
+        <Window appCode={appCode} appRoutes={appRoutes} devToolsUrl={devToolsUrl} onClose={() => setShow(false)} />
+      )}
     </>
   );
 }

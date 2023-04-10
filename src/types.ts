@@ -1,4 +1,4 @@
 export type AppRoute = {
-  name: string;
+  urlPattern: string;
   alias: string;
 };

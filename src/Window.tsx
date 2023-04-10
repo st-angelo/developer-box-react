@@ -1,32 +1,47 @@
 import { useCallback, useEffect, useRef } from 'react';
 import './style.css';
 import { AppRoute } from './types';
-import { useLocation } from 'react-router-dom';
+import { useLocation, matchPath } from 'react-router-dom';
 
 type WindowProps = {
   appCode: string;
-  routes: AppRoute[];
+  appRoutes: AppRoute[];
+  devToolsUrl: string;
   onClose: () => void;
 };
 
-function Window({ appCode, routes, onClose }: WindowProps) {
+function Window({ appCode, appRoutes, devToolsUrl, onClose }: WindowProps) {
   const contentRef = useRef<HTMLIFrameElement>(null);
 
   const location = useLocation();
   console.log(location);
 
   const syncRoute = useCallback(() => {
-    // if (route !== '/not-registered')
-    contentRef.current?.contentWindow?.postMessage(
-      { type: 'route-changed', payload: { appCode, route: location.pathname } },
-      'https://developer-tools-five.vercel.app/'
-    );
-    // else
-    //   contentRef.current?.contentWindow?.postMessage(
-    //     { type: 'route-not-registered', payload: { route } },
-    //     'http://localhost:5173'
-    //   );
+    let route: string | undefined;
+
+    for (const appRoute of appRoutes) {
+      if (matchPath(location.pathname, { path: appRoute.urlPattern })) {
+        route = appRoute.alias;
+        break;
+      }
+    }
+
+    if (route)
+      contentRef.current?.contentWindow?.postMessage(
+        { type: 'route-changed', payload: { appCode, route } },
+        devToolsUrl
+      );
+    else
+      contentRef.current?.contentWindow?.postMessage({ type: 'route-not-registered', payload: { route } }, devToolsUrl);
   }, [location]);
+
+  const devToolsLoaded = useCallback(() => {
+    // Iframe load can be buggy; adding multiple sync calls at different intervals
+    syncRoute();
+    setTimeout(syncRoute, 200);
+    setTimeout(syncRoute, 400);
+    setTimeout(syncRoute, 600);
+  }, [syncRoute]);
 
   useEffect(() => {
     syncRoute();
@@ -44,7 +59,7 @@ function Window({ appCode, routes, onClose }: WindowProps) {
         title="DevTools"
         ref={contentRef}
         className="box-content"
-        onLoad={syncRoute}
+        onLoad={devToolsLoaded}
         src={`https://developer-tools-five.vercel.app/task-viewer`}
       ></iframe>
     </div>
