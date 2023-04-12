@@ -1,6 +1,9 @@
 lockfileVersion: '6.0'
 
 dependencies:
+  developer-tools-common-language:
+    specifier: ^0.3.6
+    version: 0.3.6
   react:
     specifier: ^16.14.0
     version: 16.14.0
@@ -233,6 +236,10 @@ packages:
       ms: 2.1.2
       supports-color: 9.3.1
     dev: true
+
+  /developer-tools-common-language@0.3.6:
+    resolution: {integrity: sha512-oRzZgjikX+TEMzeZF7Cw3k9t6itOuiQGYrn/X8TDsFk3Zj+Kui1wxvcLF8UdmrOnyOZUvdJL80HnMloEG9NuAA==}
+    dev: false
 
   /eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}

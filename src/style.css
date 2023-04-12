@@ -1,19 +1,31 @@
 :root {
-  --theme-color: rgb(56 189 248);
+  --theme-color: #4b774c;
+  --theme-color-light: #a4cea4;
+  --theme-color-dark: #3c5f3c;
 }
 
 .box-handle {
   position: fixed;
-  width: 2rem;
-  height: 2rem;
+  width: 2.4rem;
+  height: 2.4rem;
   bottom: 1.5rem;
-  right: 1.5rem;
+  left: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--theme-color);
-  border-radius: 100vw;
+  border-radius: 9999px;
   outline: none;
+  border: none;
+  color: white;
+}
+
+.box-handle:hover {
+  background-color: var(--theme-color-dark);
+}
+
+.box-handle:focus {
+  background-color: var(--theme-color-dark);
 }
 
 .box-window {
@@ -22,24 +34,77 @@
   right: 1.5rem;
   border-radius: 0.375rem;
   display: flex;
-  height: 500px;
-  width: 350px;
+  height: 800px;
+  width: 450px;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  z-index: 1000;
-  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  z-index: 100;
+  padding-top: 1.75rem;
+  background-image: linear-gradient(to bottom, var(--theme-color-light), #fff 30%);
 }
 
 .box-header {
-  height: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: var(--theme-color);
+  padding-inline: 1.75rem;
+}
+
+.box-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-circle__outer {
+  display: flex;
+  width: 2.25rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
   background-color: var(--theme-color);
-  color: white;
-  font-weight: bold;
-  padding-inline: 0.75rem;
+}
+
+.brand-circle__inner {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 9999px;
+  background-color: var(--theme-color-light);
+}
+
+.brand-title {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  margin: 0;
+  padding: 0;
+}
+
+.box-header__close {
+  display: flex;
+  border: none;
+  margin: 0;
+  height: 2rem;
+  width: 2rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  outline: none;
+  background: transparent;
+  color: var(--theme-color);
+}
+
+.box-header__close:hover {
+  background-color: var(--theme-color-light);
+  color: var(--theme-color-dark);
+}
+
+.box-header__close:focus {
+  background-color: var(--theme-color-light);
+  color: var(--theme-color-dark);
 }
 
 .box-content {
@@ -59,13 +124,13 @@
 }
 
 .x {
-  display: inline-block;
   width: 20px;
   height: 20px;
-  background-image: url('https://api.iconify.design/bi/x.svg');
-  color: white;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+}
+
+.tool {
+  width: 24px;
+  height: 24px;
 }
 
 /* Utilities */

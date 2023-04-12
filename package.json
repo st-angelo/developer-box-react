@@ -1,7 +1,7 @@
 {
   "name": "developer-box-react",
   "private": true,
-  "version": "0.4.0",
+  "version": "0.6.0",
   "scripts": {
     "prebuild": "rimraf build",
     "build": "npm run prebuild && npm run build:tsc && npm run build:copy-files",
@@ -25,5 +25,8 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0"
+  },
+  "dependencies": {
+    "developer-tools-common-language": "^0.3.6"
   }
 }
