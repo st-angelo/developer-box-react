@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Window from './Window';
 import { AppRoute, Tool } from './types';
+import { CSSTransition } from 'react-transition-group';
+import './style.css';
 
 type DeveloperBoxProps = {
   devToolsUrl: string;
@@ -15,7 +17,7 @@ function DeveloperBox({ devToolsUrl, startupTool = 'Default', appCode, appRoutes
   return (
     <>
       {!show && (
-        <button className="box-handle">
+        <button className="box-handle" onClick={() => setShow(true)}>
           <svg className="tool" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
             <path
               fill="currentColor"
@@ -32,7 +34,7 @@ function DeveloperBox({ devToolsUrl, startupTool = 'Default', appCode, appRoutes
           </svg>
         </button>
       )}
-      {show && (
+      <CSSTransition in={show} timeout={200} classNames={'window'} mountOnEnter unmountOnExit appear>
         <Window
           devToolsUrl={devToolsUrl}
           startupTool={startupTool}
@@ -40,7 +42,7 @@ function DeveloperBox({ devToolsUrl, startupTool = 'Default', appCode, appRoutes
           appRoutes={appRoutes}
           onClose={() => setShow(false)}
         />
-      )}
+      </CSSTransition>
     </>
   );
 }

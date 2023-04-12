@@ -1,7 +1,7 @@
 {
   "name": "developer-box-react",
   "private": true,
-  "version": "0.6.0",
+  "version": "0.6.2",
   "scripts": {
     "prebuild": "rimraf build",
     "build": "npm run prebuild && npm run build:tsc && npm run build:copy-files",
@@ -14,6 +14,7 @@
     "@types/react": "^16.14.35",
     "@types/react-dom": "^16.9.18",
     "@types/react-router-dom": "^5.3.3",
+    "@types/react-transition-group": "^4.4.5",
     "fs-extra": "^10.0.0",
     "glob": "^9.3.4",
     "lint-staged": "^12.2.2",
@@ -27,6 +28,7 @@
     "react-router-dom": "^5.2.0"
   },
   "dependencies": {
-    "developer-tools-common-language": "^0.3.6"
+    "developer-tools-common-language": "^0.3.6",
+    "react-transition-group": "4.4.2"
   }
 }
