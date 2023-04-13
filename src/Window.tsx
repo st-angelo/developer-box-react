@@ -3,6 +3,7 @@ import './style.css';
 import { AppRoute, Tool } from './types';
 import { useLocation, matchPath } from 'react-router-dom';
 import { Events, DevToolsMessageEvent } from 'developer-tools-common-language';
+import { Tools1, X } from './Icons';
 
 const toolXPath = {
   Default: '',
@@ -21,12 +22,11 @@ function Window({ devToolsUrl, startupTool, appCode, appRoutes, onClose }: Windo
   const contentRef = useRef<HTMLIFrameElement>(null);
 
   const location = useLocation();
-  console.log(location);
 
   const syncRoute = useCallback(() => {
     let route: string | undefined;
     for (const appRoute of appRoutes) {
-      if (matchPath(location.pathname, { path: appRoute.urlPattern })) {
+      if (matchPath(location.pathname, { path: appRoute.urlPattern, exact: true })) {
         route = appRoute.alias;
         break;
       }
@@ -61,18 +61,11 @@ function Window({ devToolsUrl, startupTool, appCode, appRoutes, onClose }: Windo
     <div className="box-window">
       <div className="box-header">
         <div className="box-header__brand">
-          <div className="brand-circle__outer">
-            <div className="brand-circle__inner" />
-          </div>
+          <Tools1 />
           <h1 className="brand-title">DevTools</h1>
         </div>
         <button onClick={onClose} className="box-header__close">
-          <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
-            <path
-              fill="currentColor"
-              d="M208.49 191.51a12 12 0 0 1-17 17L128 145l-63.51 63.49a12 12 0 0 1-17-17L111 128L47.51 64.49a12 12 0 0 1 17-17L128 111l63.51-63.52a12 12 0 0 1 17 17L145 128Z"
-            />
-          </svg>
+          <X />
         </button>
       </div>
       <iframe
